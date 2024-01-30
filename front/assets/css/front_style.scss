@@ -1,0 +1,24 @@
+$whiteColor : #fff;
+$blackColor : #000;
+$color3 : #e4eaee;
+$color4: #DFDFDF;
+$color5:#525252;
+$redColor: #dc1313;
+$greenColor:#49af41;
+.stripePayCon{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    .stripeContent{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .stripeGateway{
+            width: 100%;
+            max-width: 450px;
+            padding: 50px;
+            background-color: $whiteColor;
+            border-radius: 10px;
+        }
+    }
+}

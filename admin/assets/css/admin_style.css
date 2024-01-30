@@ -1,0 +1,6 @@
+#woocommerce-product-data .product_data_tabs .wp360_sub_product_tab {
+  display: none;
+}
+#woocommerce-product-data .product_data_tabs .wp360_sub_product_tab.show {
+  display: block;
+}/*# sourceMappingURL=admin_style.css.map */

@@ -1,0 +1,13 @@
+$color1 : #fff;
+$color2 : #000;
+
+#woocommerce-product-data{
+    .product_data_tabs{
+        .wp360_sub_product_tab{
+            display: none;
+            &.show{
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.stripePayCon {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+.stripePayCon .stripeContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.stripePayCon .stripeContent .stripeGateway {
+  width: 100%;
+  max-width: 450px;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+}/*# sourceMappingURL=front_style.css.map */
