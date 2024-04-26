@@ -9,7 +9,7 @@ function register_custom_post_type() {
             'singular_name' => __('Subscription Entry'),
         ),
         'public' => false, // Set to true if you want to make it publicly accessible
-        'show_ui' => true, // Set to false if you don't want it to be displayed in the admin UI
+        'show_ui' => false, // Set to false if you don't want it to be displayed in the admin UI
         'supports' => array('title', 'editor', 'custom-fields'), // Add necessary supports
         'capability_type' => 'post', // Adjust if needed, e.g., 'page' or a custom capability type
         'map_meta_cap' => true, // Enable capability mapping for fine-grained control
