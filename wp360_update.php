@@ -235,7 +235,7 @@ function wp360_subscriptions_plugin_info( $res, $action, $args ){
         <ul>
             <li>'.$bodymessage.'</li>
         </ul>
-        <a href="https://raw.githubusercontent.com/wp360-in/wp360-invoice/d0dd6085d3045ada595a39f3a543cc64d4a090d8/changelog.txt">
+        <a href="https://raw.githubusercontent.com/wp360-in/wp360-subscription/main/changelog.txt">
         '.__('See changelog for all versions.','wp360-subscription').'</a>
     </div>';
     $installation = '<div>
