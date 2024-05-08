@@ -253,8 +253,8 @@ function wp360_subscriptions_plugin_info( $res, $action, $args ){
         'changelog' => $htmlChangelog,
     );
     $res->banners = array(
-        'low' => 'https://raw.githubusercontent.com/KrishnaBtist/wp360-invoice-btist/main/screenshots/view_invoice.jpg',
-        'high' => 'https://raw.githubusercontent.com/KrishnaBtist/wp360-invoice-btist/main/screenshots/view_invoice.jpg'
+        'low' => 'https://raw.githubusercontent.com/wp360-in/wp360-subscription/main/screenshots/subscriptions_history.jpg',
+        'high' => 'https://raw.githubusercontent.com/wp360-in/wp360-subscription/main/screenshots/subscriptions_history.jpg'
     );
     unset($res->download_link);
     return $res;
