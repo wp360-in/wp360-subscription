@@ -31,9 +31,9 @@ require_once('inc/createsubscription.php');
 require_once('wp360_update.php');
 
 
-add_action('wp_head', function(){
-    echo "subscription clone testing";
-});
+// add_action('wp_head', function(){
+//     echo "subscription clone testing";
+// });
 
 function wp360_subscriptions_plugin_version() {
     $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . 'index.php');
