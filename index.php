@@ -26,15 +26,8 @@ define( 'WP360_SUBSCRIPTION_SLUG', 'wp360-subscription' );
 require_once('suite/index.php');
 require_once('inc/functions.php');
 require_once('inc/productmeta.php');
-
 require_once('inc/createsubscription.php');
 require_once('wp360_update.php');
-
-
-// add_action('wp_head', function(){
-//     echo "subscription clone testing";
-// });
-
 function wp360_subscriptions_plugin_version() {
     $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . 'index.php');
     return $plugin_data['Version'];

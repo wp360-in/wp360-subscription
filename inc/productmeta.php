@@ -9,8 +9,8 @@ function wps_sub_create_subscription_product_type($product_types) {
     $product_types['wp360_sub_product'] = array(
         'id'            => '_wp360_subscription_product',
         'wrapper_class' => 'show_if_simple',
-        'label'         => __('WP360 Subscription', 'subscriptions-for-woocommerce'),
-        'description'   => __('This is the Subscriptions type product.', 'subscriptions-for-woocommerce'),
+        'label'         => __('WP360 Subscription', 'wp360-subscription'),
+        'description'   => __('This is the Subscriptions type product.', 'wp360-subscription'),
         'default'       => $default_value,
     );
     return $product_types;
@@ -27,7 +27,7 @@ function wp360_sub_custom_product_tab_for_subscription($tabs) {
     $default_value = $is_checkbox_checked ? 'yes' : '';
     $show_class = $is_checkbox_checked ? 'show' : '';
     $tabs['wp360_sub_product'] = array(
-        'label'    => __('WP360 Subscription Settings', 'subscriptions-for-woocommerce'),
+        'label'    => __('WP360 Subscription Settings', 'wp360-subscription'),
         'target'   => 'wp360_sub_product_target_section',
         'class'    => implode(' ', array(apply_filters('wp360_sub_settings_tabs_class', ''), $show_class)),
         'priority' => 80,
@@ -38,18 +38,18 @@ function wp360_sub_custom_product_tab_for_subscription($tabs) {
 
 function wp360_sub_product_tab_content() {
     global $post;
-    $selected_option        = get_post_meta($post->ID, '_wp360_selected_option', true);
+    $selected_option = get_post_meta($post->ID, '_wp360_selected_option', true);
     ?>
      <div id="wp360_sub_product_target_section" class="panel woocommerce_options_panel">
             <p class="form-field">
-                <label for="wp360_selected_option"><?php esc_html_e('Select Option:', 'subscriptions-for-woocommerce'); ?></label>
+                <label for="wp360_selected_option"><?php esc_html_e('Select Option:', 'wp360-subscription'); ?></label>
                 <select name="_wp360_selected_option" id="wp360_selected_option">
-                    <option value="day" <?php selected($selected_option, 'day'); ?>>Daily</option>
-                    <option value="week" <?php selected($selected_option, 'week'); ?>>Weekly</option>
-                    <option value="month" <?php selected($selected_option, 'month'); ?>>Monthly</option>
-                    <option value="quarter" <?php selected($selected_option, 'quarter'); ?>>Every 3 month</option>
-                    <option value="semiannual" <?php selected($selected_option, 'semiannual'); ?>>Every six month</option>
-                    <option value="year" <?php selected($selected_option, 'year'); ?>>Yearly</option>
+                    <option value="day" <?php selected($selected_option, 'day'); ?>><?php _e( 'Daily', 'wp360-subscription' ); ?></option>
+                    <option value="week" <?php selected($selected_option, 'week'); ?>><?php _e( 'Weekly', 'wp360-subscription' ); ?></option>
+                    <option value="month" <?php selected($selected_option, 'month'); ?>><?php _e( 'Monthly', 'wp360-subscription' ); ?></option>
+                    <option value="quarter" <?php selected($selected_option, 'quarter'); ?>><?php _e( 'Every 3 month', 'wp360-subscription' ); ?></option>
+                    <option value="semiannual" <?php selected($selected_option, 'semiannual'); ?>><?php _e( 'Every six month', 'wp360-subscription' ); ?></option>
+                    <option value="year" <?php selected($selected_option, 'year'); ?>><?php _e( 'Yearly', 'wp360-subscription' ); ?></option>
                 </select>
             </p>
       </div>

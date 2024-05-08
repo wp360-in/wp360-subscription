@@ -216,7 +216,7 @@ function wp360_subscriptions_plugin_info( $res, $action, $args ){
     } elseif ($interval->i > 0) {
         $lastupdateddate = $interval->i . ' min' . ($interval->i > 1 ? 's' : '') . ' ago';
     } else {
-        $lastupdateddate = 'Just now';
+        $lastupdateddate = __('Just now', 'wp360-subscription');
     }
     $res = new stdClass();
     $res->name   = $name;
@@ -248,9 +248,9 @@ function wp360_subscriptions_plugin_info( $res, $action, $args ){
         </ul>
     </div>';
     $res->sections = array(
-        'description' => $bodymessage,
+        'description'  => $bodymessage,
         'installation' => $installation,
-        'changelog' => $htmlChangelog,
+        'changelog'    => $htmlChangelog,
     );
     $res->banners = array(
         'low' => 'https://raw.githubusercontent.com/wp360-in/wp360-subscription/main/screenshots/subscriptions_history.jpg',

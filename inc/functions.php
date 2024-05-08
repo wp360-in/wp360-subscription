@@ -4,13 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 if (!class_exists('Wp360_Subscription')) {
     class Wp360_Subscription {
-
         public function __construct() {
             // Hook to add the admin menu
             add_action('admin_menu', array($this, 'add_admin_menu'));
         }
         public function add_admin_menu() {
-            
             // Add a submenu item
             add_submenu_page(
                 'wp360_menu',      // Parent menu slug
@@ -24,19 +22,19 @@ if (!class_exists('Wp360_Subscription')) {
         public function render_subscription_page() {
             ?>
             <div class="wrap">
-                <h1>WP360 Subscriptions</h1>
-        
+                <h1><?php _e( 'WP360 Subscriptions', 'wp360-subscription' ); ?></h1>
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                         <tr>
-                            <th>Subscription Id</th>
-                            <th>Order id</th>
-                            <th>Username</th>
-                            <th>Plan</th>
-                            <th>Time duration</th>
-                            <th>Start Date</th>
-                            <th>Status</th>
-                            <th>Next Payment Date</th>
+                            <th><?php _e( 'Subscription Id', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Order id', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Username', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Plan', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Time duration', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Start Date', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Status', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Next Payment Date', 'wp360-subscription' ); ?></th>
+                            <th><?php _e( 'Domain Name', 'wp360-subscription' ); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +44,6 @@ if (!class_exists('Wp360_Subscription')) {
                             'posts_per_page' => -1,
                             'post_status'    => 'publish',
                         );
-        
                         $subscriptions = new WP_Query($args);
                         $default_date_format = get_option('date_format');
         
@@ -76,7 +73,7 @@ if (!class_exists('Wp360_Subscription')) {
                                     $nextPaymentDate = date($default_date_format, $nextPaymentDate);
                                 }
                                 if(isset($stripeSubscription->object->status)){
-                                    $status = '<span style="color:green;">'.$stripeSubscription->object->status.'</span>';
+                                    $status = '<span style="color:green;">'.htmlspecialchars($stripeSubscription->object->status).'</span>';
                                 }
                                 ?>
                                 <tr>
@@ -87,7 +84,7 @@ if (!class_exists('Wp360_Subscription')) {
                                     <td><?php echo esc_html($time_duration); ?></td>
                                     <td><?php echo esc_html($startDate);?></td>
                                     <td><?php echo $status;?></td>
-                                    <td><?php echo $nextPaymentDate;?></td>
+                                    <td><?php echo esc_html($nextPaymentDate);?></td>
                                 </tr>
                                 <?php
                             endwhile;
@@ -194,11 +191,11 @@ function wp360_subscription_content() {
                 $nextPaymentDate = date($wp_date_format, $nextPaymentDate);
             }
             if(isset($stripeSubscription->object->status)){
-                $status = '<span style="color:green;">'.$stripeSubscription->object->status.'</span>';
+                $status = '<span style="color:green;">'.htmlspecialchars($stripeSubscription->object->status).'</span>';
             }
             ?>
             <tr>
-                <td>#<?php echo get_the_ID(); ?></td>
+                <td>#<?php echo esc_html(get_the_ID()); ?></td>
                 <td><?php  echo $productName; ?></td>
                 <td><?php  echo esc_html($order_date); ?></td>
                 <td><?php  echo esc_html($nextPaymentDate); ?></td>
@@ -227,21 +224,21 @@ add_action( 'woocommerce_account_wp360_subscription_detail_endpoint', 'wp360_sub
 function wp360_subscription_detail_content(){
     if(isset($_GET['subscription_id'])){
         $subscriptionID = $_GET['subscription_id'];
-        $order_id       = get_post_meta($subscriptionID, '_order_id', true);
-        $order_date     = get_post_meta($subscriptionID, '_order_date', true);
-        $time_duration  = get_post_meta($subscriptionID, '_time_duration', true);
-        $user_id        = get_post_meta($subscriptionID, '_user_id', true);
-        $billing_email  = get_post_meta($order_id, '_billing_email', true);
+        $order_id       = esc_html(get_post_meta($subscriptionID, '_order_id', true));
+        $order_date     = esc_html(get_post_meta($subscriptionID, '_order_date', true));
+        $time_duration  = esc_html(get_post_meta($subscriptionID, '_time_duration', true));
+        $user_id        = esc_html(get_post_meta($subscriptionID, '_user_id', true));
+        $billing_email  = esc_html(get_post_meta($order_id, '_billing_email', true));
         $order          = wc_get_order($order_id);
 
         if ($order) {
             $amount = $order->get_total(); 
         }
-        $payment_method_title   = $order->get_payment_method_title();
-        $payment_date           = $order->get_date_paid();
+        $payment_method_title   = esc_html($order->get_payment_method_title());
+        $payment_date           = esc_html($order->get_date_paid());
         $formatted_payment_date = $payment_date ? $payment_date->date_i18n('F j, Y @ g:i a') : '';
-        $customer_ip            = $order->get_customer_ip_address();
-        $payment_status         = $order->get_status();
+        $customer_ip            = esc_html($order->get_customer_ip_address());
+        $payment_status         = esc_html($order->get_status());
 
 
 
@@ -267,12 +264,13 @@ function wp360_subscription_detail_content(){
         if( $renewpaymentHistory  && is_array($renewpaymentHistory)){
             foreach($renewpaymentHistory as $rekeys=>$revals){
                 foreach($revals->data->object->lines->data as $paykey=>$paymentvals){
-                    $createdDate    =  $paymentvals->plan->created;
-                    $currency       =  $paymentvals->currency;
-                    $amount         =  $currency.' '.$paymentvals->amount;
-                    $timeFrame      =  $paymentvals->period;
-                    $interval       =  $paymentvals->plan->interval;
-                    $paidStatus     = ($paymentvals->status) ? 'completed' : 'failed';
+
+                    $createdDate    =  esc_html($paymentvals->plan->created);
+                    $currency       =  esc_html($paymentvals->currency);
+                    $amount         =  esc_html($currency.' '.$paymentvals->amount);
+                    $timeFrame      =  esc_html($paymentvals->period);
+                    $interval       =  esc_html($paymentvals->plan->interval);
+                    $paidStatus     =  esc_html(($paymentvals->status)) ? 'completed' : 'failed';
 
                     // echo '<div class="woocommerce">
                     //     <div class="woocommerce-order">
