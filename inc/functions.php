@@ -34,7 +34,7 @@ if (!class_exists('Wp360_Subscription')) {
                             <th><?php _e( 'Start Date', 'wp360-subscription' ); ?></th>
                             <th><?php _e( 'Status', 'wp360-subscription' ); ?></th>
                             <th><?php _e( 'Next Payment Date', 'wp360-subscription' ); ?></th>
-                            <th><?php _e( 'Domain Name', 'wp360-subscription' ); ?></th>
+                 
                         </tr>
                     </thead>
                     <tbody>

@@ -31,7 +31,6 @@ function check_subscription_type_on_order_completion($order_id) {
             $subscription_is =  get_post_meta($product_id, '_wp360_subscription_product', true);
             error_log( "subscription_is " . $subscription_is );
             if (get_post_meta($product_id, '_wp360_subscription_product', true) === 'yes') {
-                error_log('6666');
                 $subscription_products = true;
                 break;
             }
@@ -75,3 +74,43 @@ function create_subscription_entry($order_id) {
     );
     $post_id = wp_insert_post($post_args);
 }
+
+add_action('wp_head',function(){
+    // Dummy data
+    $dummy_data = array(
+        array(
+            'order_id'        => 1,
+            'order_date'      => '2024-05-08',
+            'time_duration'   => '1 year',
+            'user_id'         => 1,
+            'product_details' => 'Dummy product 1',
+        ),
+        array(
+            'order_id'        => 2,
+            'order_date'      => '2024-05-09',
+            'time_duration'   => '6 months',
+            'user_id'         => 2,
+            'product_details' => 'Dummy product 2',
+        ),
+    );
+
+    // Insert dummy data
+    // foreach ($dummy_data as $data) {
+    //     $post_args = array(
+    //         'post_title'   => 'Order #' . $data['order_id'],
+    //         'post_content' => '',
+    //         'post_status'  => 'publish',
+    //         'post_type'    => 'subscription_wp360', // Replace with your custom post type
+    //         'meta_input'   => array(
+    //             '_order_id'        => $data['order_id'],
+    //             '_order_date'      => $data['order_date'],
+    //             '_time_duration'   => $data['time_duration'],
+    //             '_user_id'         => $data['user_id'],
+    //             '_product_details' => $data['product_details'],
+    //         ),
+    //     );
+    //     $post_id = wp_insert_post($post_args);
+    // }
+
+
+});
