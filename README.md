@@ -37,11 +37,11 @@ Once activated, the WP360 SUBSCRIPTION plugin extends the functionality of your 
 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /screenshots directory.
 2. This is the second screen shot
 
-![Add Invoice](screenshots/stripe_details.jpg)
+![Stripe Details](screenshots/stripe_details.jpg)
 *Add Invoice form in the WordPress admin.*
 
-![User Invoice List](screenshots/subscriptions_history.jpg)
-*List of invoices in the WordPress admin.*
+![Payment Recurring History](screenshots/subscriptions_history.jpg)
+*List of customer payment history in the WordPress admin.*
 
 
 
