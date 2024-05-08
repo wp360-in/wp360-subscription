@@ -1,14 +1,14 @@
 === WP360 SUBSCRIPTION ===
 
-Contributors: wp360
-Donate link: https://wp360.in
-Tags: Payment, Recurring Payment, Subscription
-Requires at least: 5.2.0
-Tested up to: 6.3
-Stable tag: 6.1.6
-Requires PHP: 7.4.8
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+**Contributors:** wp360
+**Donate link:** https://wp360.in
+**Tags:** Payment, Recurring Payment, Subscription
+**Requires at least:** 5.2.0
+**Tested up to: 6.3**
+**Stable tag:** 6.1.6
+**Requires PHP:** 7.4.8
+**License:** GPLv2 or later
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 
 
 ## Description
