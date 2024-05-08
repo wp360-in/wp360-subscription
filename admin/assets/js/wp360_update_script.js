@@ -21,7 +21,7 @@ jQuery(document).on('click','.wp360-subscriptions-update-click',function(e){
       success: function(response) {
           $this.closest('.update-message').removeClass('updating-message');
           let responseData = response.data;
-          var trElement    = jQuery('tr[data-slug="wp360-invoice"]');
+          var trElement    = jQuery('tr[data-slug="wp360-subscription"]');
           var divElement   = trElement.find('.plugin-version-author-uri');
           divElement.html('Version ' + responseData.aviliableVersion + ' | By <a href="https://wp360.in/">wp360</a>');
            $this.parent().find('.update-message').remove();
