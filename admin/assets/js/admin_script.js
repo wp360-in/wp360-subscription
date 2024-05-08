@@ -1,10 +1,9 @@
 const adminAjax = dynamicObjects.adminAjax
-
 jQuery(document).ready(function($) {
-  function toggleSubscriptionTab() {
-      var checkbox = $('#_wp360_subscription_product');
+  function wp360_subscription_toggleSubscriptionTab() {
+      var checkbox              = $('#_wp360_subscription_product');
       var tabcontentsubsettting = $("#wp360_sub_product_target_section")
-      var settingtab = $('.wp360_sub_product_tab');
+      var settingtab            = $('.wp360_sub_product_tab');
       if (checkbox.prop('checked')) {
           settingtab.show();
        //   tabcontentsubsettting.show();
@@ -13,9 +12,8 @@ jQuery(document).ready(function($) {
         //  tabcontentsubsettting.hide();
       }
   }
-  toggleSubscriptionTab();
+  wp360_subscription_toggleSubscriptionTab();
   $('#_wp360_subscription_product').on('change', function() {
-      toggleSubscriptionTab();
+      wp360_subscription_toggleSubscriptionTab();
   });
-
 });

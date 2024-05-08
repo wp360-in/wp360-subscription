@@ -20,7 +20,7 @@ if (!class_exists('Wp360_Suite')) {
         }
         public function wp360_page() {
             // Callback function for the top-level menu page
-            echo '<div class="wrap"><h2>Wp360 Main Page</h2><p>Main content goes here.</p></div>';
+            echo '<div class="wrap"><h2>Wp360 Dashboard</h2></div>';
         }
     }
     // Instantiate the class
