@@ -1,12 +1,36 @@
 $color1 : #fff;
 $color2 : #000;
-
+$color3 : #2271b1;
 #woocommerce-product-data{
     .product_data_tabs{
         .wp360_sub_product_tab{
             display: none;
             &.show{
                 display: block;
+            }
+        }
+    }
+}
+.wp360_admin_tabs{
+    ul{
+        li{
+            display: inline-block;
+            margin-right: 10px;
+            &:after{
+                content: '|';
+                margin-left: 10px;
+            }
+            &:last-child{
+                &:after{
+                    content: '';
+                }
+            }
+            a{
+                text-decoration: none;
+                color: $color3;
+                &.active{
+                    color: #000;
+                }
             }
         }
     }

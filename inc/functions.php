@@ -2,6 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+
+//wp360_subscription_email_confi
+require_once('email-config.php');
+require_once('tabs.php');
+//wp360_subscription_email_confi
+
 if (!class_exists('Wp360_Subscription')) {
     class Wp360_Subscription {
         public function __construct() {
@@ -18,11 +24,23 @@ if (!class_exists('Wp360_Subscription')) {
                 'wp360_subscription',   // Menu slug
                 array($this, 'render_subscription_page') // Callback function to render the page
             );
+            add_submenu_page( 
+                null, 
+                'Wp360 subscription email config', 
+                'Wp360 subscription email config', 
+                'manage_options', 
+                'wp360-subscription-email-config', 
+                'wp360_subscription_email_confi'
+            );
         }
         public function render_subscription_page() {
             ?>
             <div class="wrap">
-                <h1><?php _e( 'WP360 Subscriptions', 'wp360-subscription' ); ?></h1>
+
+                <?php echo Wp360_Subscription_tabs()  ?>
+
+                <h1>WP360 Subscriptions</h1>
+        
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                         <tr>
@@ -327,3 +345,17 @@ function dateformattedTimestamp($createdDate){
 //     }
 // }
 
+
+
+
+
+add_filter( 'woocommerce_quantity_input_args', 'hide_quantity_input_field', 10, 2 );
+function hide_quantity_input_field( $args, $product ) {
+    if ( is_product() ) {
+        $args['input_value'] = 1;
+        $args['min_value'] = 1;
+        $args['max_value'] = 1;
+        $args['style'] = 'display: none;';
+    }
+    return $args;
+}

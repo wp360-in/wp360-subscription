@@ -3,4 +3,23 @@
 }
 #woocommerce-product-data .product_data_tabs .wp360_sub_product_tab.show {
   display: block;
+}
+
+.wp360_admin_tabs ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.wp360_admin_tabs ul li:after {
+  content: "|";
+  margin-left: 10px;
+}
+.wp360_admin_tabs ul li:last-child:after {
+  content: "";
+}
+.wp360_admin_tabs ul li a {
+  text-decoration: none;
+  color: #2271b1;
+}
+.wp360_admin_tabs ul li a.active {
+  color: #000;
 }/*# sourceMappingURL=admin_style.css.map */
