@@ -35,3 +35,21 @@ $color3 : #2271b1;
         }
     }
 }
+.wp360_sub_email_conf_con_inner{
+    width: 100%;
+    max-width: 1140px;
+    background-color: #fff;
+    display: block;
+    padding: 20px 30px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    h2{
+        color: #007cba;
+        text-transform: uppercase;
+    }
+    .col{
+        &:not(:last-of-type){
+            margin-bottom: 30px;
+        }
+    }
+}
