@@ -22,4 +22,22 @@
 }
 .wp360_admin_tabs ul li a.active {
   color: #000;
+}
+
+.wp360_sub_email_conf_con_inner {
+  width: 100%;
+  max-width: 1140px;
+  background-color: #fff;
+  display: block;
+  padding: 20px 30px;
+  margin-top: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.wp360_sub_email_conf_con_inner h2 {
+  color: #007cba;
+  text-transform: uppercase;
+}
+.wp360_sub_email_conf_con_inner .col:not(:last-of-type) {
+  margin-bottom: 30px;
 }/*# sourceMappingURL=admin_style.css.map */

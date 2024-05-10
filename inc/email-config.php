@@ -25,24 +25,51 @@ function wp360_subscription_email_confi(){
                 if(isset($content['wp360_subs_renew_email_confirm'])){
                     $renewEmail = $content['wp360_subs_renew_email_confirm'];
                 }
+                $cancelEmail = '';
+                if(isset($content['wp360_subs_cancel_email_confirm'])){
+                    $cancelEmail = $content['wp360_subs_cancel_email_confirm'];
+                }
+                $expireEmail = '';
+                if(isset($content['wp360_subs_expire_email_confirm'])){
+                    $expireEmail = $content['wp360_subs_expire_email_confirm'];
+                }
             ?>
             <input type="hidden" name="wp360_subscription_settings[enable]">
-            <table>
+            <!-- <table>
                 <tr>
                     <th>Confirmation email for new subscription</th>
                     <td>
-                        <?php wp_editor($confirmEmail, 'wp360_subs_email_confirm', $settings);?>
+                        <@?php wp_editor($confirmEmail, 'wp360_subs_email_confirm', $settings);?>
                     </td>
                 </tr>
                 <tr>
                     <th>Subscription renew confirmation email</th>
-                    <td><?php wp_editor($renewEmail, 'wp360_subs_renew_email_confirm', $settings);?></td>
+                    <td><@?php wp_editor($renewEmail, 'wp360_subs_renew_email_confirm', $settings);?></td>
                 </tr>
                 <tr>
                     <th></th>
-                    <td><?php submit_button(); ?></td>
+                    <td><@?php submit_button(); ?></td>
                 </tr>
-            </table>
+            </table> -->
+            <div class="wp360_sub_email_conf_con_inner">
+                <div class="col">
+                    <h2>new subscription</h2>
+                    <?php wp_editor($confirmEmail, 'wp360_subs_email_confirm', $settings);?>
+                </div>
+                <div class="col">
+                    <h2>renew subscription</h2>
+                    <?php wp_editor($renewEmail, 'wp360_subs_renew_email_confirm', $settings);?>
+                </div>
+                <div class="col">
+                    <h2>cancel subscription</h2>
+                    <?php wp_editor($cancelEmail, 'wp360_subs_cancel_email_confirm', $settings);?>
+                </div>
+                <div class="col">
+                    <h2>subscription expiration</h2>
+                    <?php wp_editor($expireEmail, 'wp360_subs_expire_email_confirm', $settings);?>
+                </div>
+            </div>
+            <?php submit_button(); ?>
         </form>
     </div>
     <?php
@@ -62,6 +89,12 @@ function wp360_subscription_email_confi_save() {
                 }
                 if(isset($_POST['wp360_subs_renew_email_confirm'])){
                     $_POST['wp360_subscription_settings']['wp360_subs_renew_email_confirm'] = $_POST['wp360_subs_renew_email_confirm'];
+                }
+                if(isset($_POST['wp360_subs_cancel_email_confirm'])){
+                    $_POST['wp360_subscription_settings']['wp360_subs_cancel_email_confirm'] = $_POST['wp360_subs_cancel_email_confirm'];
+                }
+                if(isset($_POST['wp360_subs_expire_email_confirm'])){
+                    $_POST['wp360_subscription_settings']['wp360_subs_expire_email_confirm'] = $_POST['wp360_subs_expire_email_confirm'];
                 }
                 //echo '<pre>', print_r($_POST); die;
                 update_option('wp360_subscription_settings', $_POST['wp360_subscription_settings']);

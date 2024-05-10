@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //wp360_subscription_email_confi
 require_once('email-config.php');
 require_once('tabs.php');
+require_once('single-product-config.php');
 //wp360_subscription_email_confi
 
 if (!class_exists('Wp360_Subscription')) {
