@@ -21,13 +21,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'WP360SUBSCRIPTIONNAME', 'SUBSCRIPTION' );
 define( 'WP360SUBSCRIPTIONSLUG', 'wp360_SUBSCRIPTION' );
 define( 'WP360SUBSCRIPTIONFOLDER', 'wp360-SUBSCRIPTION' );
-define( 'WP360_SUBSCRIPTION_SLUG', 'wp360-subscription' );
 define( 'WP360SUBSCRIPTIONVER', time() );
+define( 'WP360_SUBSCRIPTION_SLUG', 'wp360-subscription' );
+
 require_once('suite/index.php');
 require_once('inc/functions.php');
 require_once('inc/productmeta.php');
 
 require_once('inc/createsubscription.php');
 
+//for update 
+require_once('wp360_update.php');
+function wp360_subscriptions_plugin_version() {
+    $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . 'index.php');
+    return $plugin_data['Version'];
+}
 
 
