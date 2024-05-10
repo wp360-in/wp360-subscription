@@ -32,9 +32,5 @@ require_once('inc/createsubscription.php');
 
 //for update 
 require_once('wp360_update.php');
-function wp360_subscriptions_plugin_version() {
-    $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . 'index.php');
-    return $plugin_data['Version'];
-}
 
 

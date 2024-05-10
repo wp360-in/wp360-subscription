@@ -6,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 if(!session_id()){
     session_start();
 }
+function wp360_subscriptions_plugin_version() {
+    $plugin_data = get_plugin_data(plugin_dir_path(__FILE__) . 'wp360-subscription.php');
+    return $plugin_data['Version'];
+}
+
 
 add_action('admin_enqueue_scripts', 'wp360subscription_UpdateScripts');
 function wp360subscription_UpdateScripts() {    
@@ -161,7 +166,7 @@ function wp360_subscriptions_push_update( $transient ){
         return $transient;
     }
     $plugin_basename    = plugin_basename(__FILE__); // Get the plugin's basename
-    $custom_plugin_file = dirname($plugin_basename) . '/index.php'; // Combine with '/wp360-invoice.php'
+    $custom_plugin_file = dirname($plugin_basename) . '/wp360-subscription.php'; // Combine with '/wp360-invoice.php'
     $available_version  = get_option('wp360_plugin_available_version_subscription');
     $installed_version  = get_plugin_data(WP_PLUGIN_DIR . '/' . $custom_plugin_file)['Version'];
     if (!empty($available_version) && version_compare($available_version, $installed_version, '>')) {
@@ -188,7 +193,7 @@ function wp360_subscriptions_plugin_info( $res, $action, $args ){
     if( plugin_basename( __DIR__ ) !== $args->slug ) {
             return $res;
     }
-    $plugin_data         =  get_plugin_data(plugin_dir_path(__FILE__) . 'index.php');
+    $plugin_data         =  get_plugin_data(plugin_dir_path(__FILE__) . 'wp360-subscription.php');
     $releaseData         =  get_release_date_subscription();
     $name                =  $plugin_data['Name'];
     $textDomain          =  $plugin_data['TextDomain'];
