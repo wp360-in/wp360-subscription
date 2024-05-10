@@ -59,7 +59,12 @@ if (!class_exists('Wp360_Suite')) {
                     foreach ($this->addons() as $addon) {
                         $status = 'not_installed';
                         $actionName = 'Get it';
-                        $action = $addon['repo_url'];
+                        $action = '';
+                        if(isset($addon['repo_url'])){
+                            $action = $addon['repo_url'];
+                        }
+                        
+
                         $target = '';
                         $pathpluginurl = WP_PLUGIN_DIR .'/'. $addon['path'];
                         $isinstalled = file_exists( $pathpluginurl );
@@ -73,7 +78,7 @@ if (!class_exists('Wp360_Suite')) {
                             $actionName = 'Activated';
                             $action = 'javascript:;';
                         } 
-                        if(!$addon['repo_url']){
+                        if(isset($addon['repo_url']) && !$addon['repo_url']){
                             $status = 'coming_up';
                             $actionName = 'Comming up';
                             $action = 'javascript:;';
