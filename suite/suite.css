@@ -21,8 +21,12 @@
   list-style: none;
 }
 .wp360_main_dashboard .wp360_content .inner_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .wp360_main_dashboard .wp360_content .inner_list:not(:last-child) {
   padding: 24px 0;
