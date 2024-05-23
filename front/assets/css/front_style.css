@@ -5,8 +5,12 @@
 }
 .stripePayCon .stripeContent {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .stripePayCon .stripeContent .stripeGateway {
   width: 100%;
@@ -14,4 +18,332 @@
   padding: 50px;
   background-color: #fff;
   border-radius: 10px;
+}
+
+.flex, .subscription_detail_header .detail_title h2, .subscription_detail_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.subscription_detail_header {
+  width: 100%;
+  gap: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 12px;
+}
+.subscription_detail_header .subs_cancel {
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #e82222;
+  color: #FFFFFF;
+  font-family: inherit;
+  padding: 8px 11px;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease background-color;
+  transition: 0.3s ease background-color;
+  text-transform: capitalize;
+}
+.subscription_detail_header .subs_cancel:hover {
+  background-color: #ee3309;
+}
+.subscription_detail_header .detail_title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.subscription_detail_header .detail_title h2 {
+  gap: 20px;
+  width: auto;
+  margin: 0px;
+}
+.subscription_detail_header .status {
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #EDA62A;
+  color: #FFFFFF;
+}
+.subscription_detail_header .status.active {
+  background-color: #D1FAB3;
+  color: green;
+}
+.subscription_detail_header .status.cancelled {
+  background-color: #e8e8e8;
+  color: #545969;
+}
+
+.subscription_details_block {
+  margin-top: clamp(30px, 6vw, 50px);
+}
+.subscription_details_block #subscription_detail {
+  display: inline-grid;
+  gap: 10px 30px;
+  grid-template-columns: auto auto;
+}
+.subscription_details_block #subscription_detail div {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.wp_sub_details_head {
+  font-weight: 600;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 12px;
+  font-size: 110%;
+  margin-bottom: 12px;
+}
+
+#sub_invoice_details {
+  gap: 15px 30px;
+  padding-top: 20px;
+  font-weight: 600;
+}
+#sub_invoice_details div {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  position: relative;
+}
+#sub_invoice_details div span {
+  display: block;
+  width: 100%;
+  font-weight: normal;
+}
+
+.invoice_details_block {
+  margin-top: clamp(30px, 6vw, 50px);
+}
+.invoice_details_block table.subcriptions_invoices_table.shop_table {
+  border: none;
+}
+.invoice_details_block table.subcriptions_invoices_table.shop_table th, .invoice_details_block table.subcriptions_invoices_table.shop_table td {
+  padding-left: 0px;
+}
+
+.cancel_subscription_dialog {
+  position: absolute;
+  z-index: 10000; /* 1 */
+  inset: 0px;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.cancel_subscription_dialog.is-visible {
+  visibility: visible;
+}
+.cancel_subscription_dialog.in-progress {
+  pointer-events: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.cancel_subscription_dialog.in-progress .modal-wrapper .wp360_modal_loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.cancel_subscription_dialog .modal-overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: hsla(0, 0%, 0%, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s linear 0.3s, opacity 0.3s;
+  transition: visibility 0s linear 0.3s, opacity 0.3s;
+}
+.cancel_subscription_dialog.is-visible .modal-overlay {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+.cancel_subscription_dialog.is-visible .modal-transition {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+.cancel_subscription_dialog .modal-wrapper {
+  position: absolute;
+  z-index: 9999;
+  max-width: 32em;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+          box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+  padding: 1em;
+}
+.cancel_subscription_dialog .modal-wrapper .wp360_modal_loader {
+  position: absolute;
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+.cancel_subscription_dialog .modal-wrapper .wp360_modal_loader .wp360_loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #dc1313;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+.cancel_subscription_dialog .modal-transition {
+  -webkit-transition: all 0.3s 0.12s;
+  transition: all 0.3s 0.12s;
+  -webkit-transform: translateY(-10%);
+          transform: translateY(-10%);
+  opacity: 0;
+}
+.cancel_subscription_dialog .modal-header {
+  position: relative;
+  background-color: #fff;
+}
+.cancel_subscription_dialog .modal-header h3 {
+  font-size: clamp(20px, 3vw, 26px);
+}
+.cancel_subscription_dialog .modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  color: #aaa;
+  background: none;
+  border: 0;
+}
+.cancel_subscription_dialog .modal-close:hover {
+  color: #777;
+}
+.cancel_subscription_dialog .modal-heading {
+  font-size: 1.125em;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.cancel_subscription_dialog .modal-content > *:last-child {
+  margin-bottom: 0;
+}
+.cancel_subscription_dialog .modal-content > *:first-child {
+  margin-top: 0;
+}
+.cancel_subscription_dialog .modal-content form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+}
+.cancel_subscription_dialog .modal-content form div, .cancel_subscription_dialog .modal-content form input, .cancel_subscription_dialog .modal-content form label, .cancel_subscription_dialog .modal-content form select {
+  width: 100%;
+}
+.cancel_subscription_dialog .modal-content form label {
+  font-size: inherit;
+  font-family: inherit;
+  margin-bottom: 8px;
+  display: block;
+}
+.cancel_subscription_dialog .modal-content form input, .cancel_subscription_dialog .modal-content form textarea, .cancel_subscription_dialog .modal-content form select {
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: inherit;
+}
+.cancel_subscription_dialog .modal-content form textarea {
+  resize: none;
+  height: clamp(80px, 8vw, 100px);
+}
+.cancel_subscription_dialog .modal_button_wrapper {
+  gap: 15px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.cancel_subscription_dialog .modal_button_wrapper button {
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cancel_subscription_dialog .modal_button_wrapper button[type=submit] {
+  background: #e82222;
+  color: #FFFFFF;
+}
+.cancel_subscription_dialog .modal_button_wrapper button.modal-toggle {
+  background: #e8e8e8;
+  color: #000;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@media (min-width: 480px) {
+  #sub_invoice_details div {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+  }
+  #sub_invoice_details div:not(:last-of-type):after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    height: 100%;
+    background: #e8e8e8;
+    width: 1px;
+    top: 0px;
+  }
 }/*# sourceMappingURL=front_style.css.map */

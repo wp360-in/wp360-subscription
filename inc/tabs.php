@@ -10,6 +10,10 @@ function Wp360_Subscription_tabs(){
             'label'=>'Email configuration',
             'page'=>'wp360-subscription-email-config'
         ],
+        [
+            'label'=>'General Settings',
+            'page'=>'wp360-subscription-general-settings'
+        ],
     ];
     $res = '<div class="wp360_admin_tabs"><ul>';
     foreach($items as $item){
