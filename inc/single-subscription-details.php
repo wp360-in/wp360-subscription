@@ -5,14 +5,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if (!class_exists('Wp360_Subscription_Details')) {
     class Wp360_Subscription_Details {
+        public $subsID;
         public function __construct() {
             add_action( 'woocommerce_account_wp360_subscription_detail_endpoint', array($this, 'wp360_subscription_detail_content') );
-            $this->$subsID = isset($_GET['subscription_id']) ? absint($_GET['subscription_id']) : '';
+            $this->subsID = isset($_GET['subscription_id']) ? absint($_GET['subscription_id']) : '';
         }
 
         public function validateUser(){
-            if(!empty($this->$subsID) && get_post_type($this->$subsID) === 'subscription_wp360'){
-                $sub_order_id = get_post_meta($this->$subsID, '_order_id', true);
+            if(!empty($this->subsID) && get_post_type($this->subsID) === 'subscription_wp360'){
+                $sub_order_id = get_post_meta($this->subsID, '_order_id', true);
                 if (current_user_can('administrator') || (get_post_meta($sub_order_id, '_customer_user', true) == get_current_user_id())) {
                     return true;
                 }
@@ -21,7 +22,7 @@ if (!class_exists('Wp360_Subscription_Details')) {
         }
         public function wp360_subscription_detail_content() {
             if($this->validateUser()){
-                $subscriptionID = $this->$subsID;
+                $subscriptionID = $this->subsID;
                 $subscription_details = get_post_meta($subscriptionID, '_product_details', true);
                 $stripeSubscription = get_post_meta($subscriptionID, '_wp360_subscription', true);
                 $order_id = get_post_meta($subscriptionID, '_order_id', true);
@@ -95,7 +96,7 @@ if (!class_exists('Wp360_Subscription_Details')) {
                                     // echo '<pre>'; print_r($invoicesvals);
                                     if($invoicesvals->status === 'draft' || $invoicesvals->status === 'paid'){
                                         $currency =  $invoicesvals->currency;
-                                        $amount =  $currency.' '.$invoicesvals->amount_paid;
+                                        $amount =  $currency.' '.($invoicesvals->amount_paid / 100);
                                         $paidStatus = ($invoicesvals->status === 'paid') ? 'completed' : (($invoicesvals->status === 'draft') ? 'failed' : 'failed');
                                         echo '<tr>
                                             <td>'.strtoupper($amount).'</td>

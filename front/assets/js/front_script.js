@@ -22,6 +22,7 @@
 //         messages.innerText = error.message
 //     }
 // })
+
 jQuery(document).ready(function($){
     $('.subscription_detail_header .subs_cancel, .cancel_subscription_dialog .modal-toggle').on('click', function(e) {
       e.preventDefault();

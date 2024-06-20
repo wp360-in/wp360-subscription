@@ -9,7 +9,9 @@ require_once('tabs.php');
 require_once('single-product-config.php');
 require_once('single-subscription-details.php');
 require_once('general-settings.php');
+require_once('subscription-updates.php');
 require_once('cancelsubscription.php');
+require_once('license-admin.php');
 //wp360_subscription_email_confi
 
 if (!class_exists('Wp360_Subscription')) {
@@ -224,7 +226,7 @@ function wp360_subscription_content() {
                 <td><?php  echo esc_html($order_date); ?></td>
                 <td><?php  echo esc_html($nextPaymentDate); ?></td>
                 <td><?php  echo $status; ?></td>
-                <td style="display:none;"><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>/wp360_subscription_detail?subscription_id=<?php echo get_the_ID();?>"><?php  _e('View', 'wp360-subscription')?></a></td>
+                <td><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>/wp360_subscription_detail?subscription_id=<?php echo get_the_ID();?>" class="woocommerce-button button view"><?php  _e('View', 'wp360-subscription')?></a></td>
             </tr>
             <?php
         endwhile;
