@@ -6,7 +6,7 @@
   Tested up to: WP 6.3
   Author: wp360
   Author URI: https://wp360.in/
-  Version: 1.0.2
+  Version: 1.0.3
   Requires PHP: 7.3
   Tags: woocommerce
   Text Domain: wp360-subscription
