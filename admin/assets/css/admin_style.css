@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #woocommerce-product-data .product_data_tabs .wp360_sub_product_tab {
   display: none;
 }
@@ -40,4 +41,59 @@
 }
 .wp360_sub_email_conf_con_inner .col:not(:last-of-type) {
   margin-bottom: 30px;
+}
+
+textarea[name=wp360_subs_cancel_subscription_dropdown] {
+  width: 100%;
+  height: 80px;
+}
+
+input[name=_wp360_subscription_license_key] {
+  width: 100%;
+}
+
+.wp360_message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  position: relative;
+  padding: 1.25em 1em 1.2em 5em;
+  margin: 0.5em 0px;
+  border: 1px solid #d5d7e9;
+}
+.wp360_message.message_success:before, .wp360_message.message_success:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.wp360_message.message_success:before {
+  height: 2.5rem;
+  left: 0.5rem;
+  width: 2.5rem;
+  background-color: rgba(34, 167, 83, 0.2);
+}
+.wp360_message.message_success:after {
+  content: "✓";
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 1.625rem;
+  left: 0.95rem;
+  width: 1.625rem;
+  background-color: #22a753;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }/*# sourceMappingURL=admin_style.css.map */
