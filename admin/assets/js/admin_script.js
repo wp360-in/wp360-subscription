@@ -92,3 +92,45 @@ jQuery(document).ready(function($) {
       }
   });
 });
+
+jQuery(document).ready(function($) {
+    $('.cancel-subscription').on('click', function(e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        var subscriptionId = $this.data('subscription-id');
+        var postId = $this.data('post-id');
+        
+        if (!confirm('Are you sure you want to cancel this subscription?')) {
+            return;
+        }
+        
+        $this.text('Processing...');
+        
+        $.ajax({
+            url: sub_adminAjax,
+            type: 'POST',
+            data: {
+                action: 'wp360_cancel_subscription',
+                subscriptionID: subscriptionId,
+                post_id: postId,
+                nonce: dynamicObjects.cancelSubscriptionNonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Subscription canceled successfully!');
+                    location.reload();
+                } else {
+                    alert('Error: ' + response.data);
+                    $this.text('Cancel Subscription');
+                }
+            },
+            error: function() {
+                alert('An error occurred. Please try again.');
+                $this.text('Cancel Subscription');
+            }
+        });
+    });
+});
+
+

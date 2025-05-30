@@ -7,7 +7,6 @@
         class Wp360_Updates {
             public function __construct() {
                 add_action('wp_ajax_update_subscription_invoices_meta', array($this, 'updateSubscriptionMeta'));
-                $this->$paged = 1;
                 $this->checkForSubscriptionInvoices();
             }
 
@@ -43,7 +42,10 @@
                 wp_reset_postdata();
             }
             private function isWp360StripePluginActive() {
-                return is_plugin_active('wp360-stripe/index.php'); // Adjust the path as necessary
+                if (!function_exists('is_plugin_active')) {
+                    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+                }
+                return is_plugin_active('wp360-stripe/wp360-stripe.php'); // Adjust the path as necessary
             }
             public function updateSubscriptionMeta() {
                 if (!$this->isWp360StripePluginActive()) {

@@ -11,6 +11,7 @@ require_once('single-subscription-details.php');
 require_once('general-settings.php');
 require_once('subscription-updates.php');
 require_once('cancelsubscription.php');
+require_once('manualcancelSubscription.php'); //webdev62
 require_once('license-admin.php');
 //wp360_subscription_email_confi
 
@@ -60,6 +61,7 @@ if (!class_exists('Wp360_Subscription')) {
                             <th><?php _e( 'Start Date', 'wp360-subscription' ); ?></th>
                             <th><?php _e( 'Status', 'wp360-subscription' ); ?></th>
                             <th><?php _e( 'Next Payment Date', 'wp360-subscription' ); ?></th>
+							<th><?php _e( 'Action', 'wp360-subscription' ); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,7 +101,18 @@ if (!class_exists('Wp360_Subscription')) {
                                     $nextPaymentDate = date($default_date_format, $nextPaymentDate);
                                 }
                                 if(isset($stripeSubscription->object->status)){
-                                    $status = '<span style="color:green;">'.$stripeSubscription->object->status.'</span>';
+                                    $statusOrg = $stripeSubscription->object->status;
+                                    $status = '<span style="color:' . (($statusOrg == 'active') ? 'green' : 'red') . ';">' . $statusOrg . '</span>';
+                                    if($statusOrg == 'canceled'){
+                                        $cancelDate = $stripeSubscription->object->canceled_at;
+                                        $cancelDate = date($default_date_format, $cancelDate);
+                                        $status .= ' ('.$cancelDate.')';
+                                    }
+                                }
+                                $subscription_id = "";
+                                //echo '<pre>***'.print_r($stripeSubscription , true).'</pre>';
+                                if(isset($stripeSubscription->object->id)){
+                                    $subscription_id = $stripeSubscription->object->id;
                                 }
                                 ?>
                                 <tr>
@@ -111,6 +124,19 @@ if (!class_exists('Wp360_Subscription')) {
                                     <td><?php echo esc_html($startDate);?></td>
                                     <td><?php echo $status;?></td>
                                     <td><?php echo $nextPaymentDate;?></td>
+									<!-- CANCEL SUBSCRIPTIONS KK -->
+                                        <td>
+                                            <?php if($stripeSubscription->object->status == 'active' && $subscription_id ): ?>
+                                                <a href="#" class="cancel-subscription" 
+                                                    data-subscription-id="<?php echo esc_attr($subscription_id); ?>"
+                                                    data-post-id="<?php echo esc_attr(get_the_ID()); ?>">
+                                                    Cancel Subscription
+                                                </a>
+                                            <?php else: ?>
+                                                <span>Subscription Canceled</span>
+                                            <?php endif; ?>
+                                        </td>
+                                    <!-- CANCEL SUBSCRIPTIONS KK -->
                                 </tr>
                                 <?php
                             endwhile;
@@ -142,6 +168,7 @@ function pluginAdminScriptwp_subscription(){
     wp_localize_script('wp360-subscription'.'_admin_js', 'dynamicObjects', 
         array( 
             'adminAjax' => admin_url('admin-ajax.php'),
+            'cancelSubscriptionNonce' => wp_create_nonce('wp360_cancel_subscription_nonce')
         )
     );
 }
